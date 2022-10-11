@@ -1,4 +1,4 @@
-### Hearty Capsules
+# Hearty Capsules
 
-## Personal Project
+### Personal Project
 Supplements web app
