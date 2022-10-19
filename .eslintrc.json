@@ -26,7 +26,6 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "parser": "@typescript-eslint/parser",
   "settings": {
