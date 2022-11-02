@@ -1,5 +1,6 @@
+import Pages from "./pages/Pages";
 function App() {
-  return <div>Hearty Capsules</div>;
+  return <Pages />;
 }
 
 export default App;
