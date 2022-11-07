@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Home from "./home/home";
 import Account from "./account/account";
@@ -12,7 +12,7 @@ import Supplement from "./supplement/supplement";
 
 function Pages() {
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
@@ -24,7 +24,7 @@ function Pages() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/supplement" element={<Supplement />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
