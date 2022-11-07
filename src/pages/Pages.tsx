@@ -1,18 +1,19 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Home from "./home/home";
-import Account from "./account/account";
-import Cart from "./cart/cart";
-import Checkout from "./checkout/checkout";
-import Contact from "./contact/contact";
-import LogIn from "./log-in/log-in";
-import Quiz from "./quiz/quiz";
-import Shop from "./shop/shop";
-import Supplement from "./supplement/supplement";
+const Home = lazy(async () => await import("./home/home"));
+const Account = lazy(async () => await import("./account/account"));
+const Cart = lazy(async () => await import("./cart/cart"));
+const Checkout = lazy(async () => await import("./checkout/checkout"));
+const Contact = lazy(async () => await import("./contact/contact"));
+const LogIn = lazy(async () => await import("./log-in/log-in"));
+const Quiz = lazy(async () => await import("./quiz/quiz"));
+const Shop = lazy(async () => await import("./shop/shop"));
+const Supplement = lazy(async () => await import("./supplement/supplement"));
 
 function Pages() {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
@@ -24,7 +25,7 @@ function Pages() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/supplement" element={<Supplement />} />
       </Routes>
-    </>
+    </Suspense>
   );
 }
 
