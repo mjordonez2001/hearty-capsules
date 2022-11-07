@@ -1,5 +1,14 @@
 # Hearty Capsules
 
-### Personal Project
+## Prerequisites
 
-Supplements web app
+- Node v16+
+- npm v8+
+
+## Installation
+
+`npm install`
+
+## Running the app
+
+`npm run dev`
