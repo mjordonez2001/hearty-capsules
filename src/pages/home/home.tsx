@@ -1,4 +1,5 @@
 function Home() {
+  // get home page data
   return <div>Home</div>;
 }
 
