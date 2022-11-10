@@ -7,4 +7,7 @@ export default defineConfig({
     port: 8000,
   },
   plugins: [react()],
+  build: {
+    target: "esnext",
+  },
 });
