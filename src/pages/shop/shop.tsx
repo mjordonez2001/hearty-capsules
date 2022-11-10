@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 function Shop() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [supplements, setSupplements] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchSupplements = async () => {
@@ -31,9 +31,11 @@ function Shop() {
     return <div>loading...</div>;
   }
 
-  if (error) {
+  if (error !== null) {
     return <div>it failed</div>;
   }
+
+  console.log("we have the data", supplements);
 
   return <div>Shop</div>;
 }
