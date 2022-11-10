@@ -1,24 +1,26 @@
-import { useEffect, useState } from "react";
 import { axiosClient } from "../../utils/axios";
+import { useQuery } from "@tanstack/react-query";
 
 async function listSupplements() {
   return await axiosClient.get("/supplements");
 }
 
-function Shop() {
-  const [supplements, setSupplements] = useState<
-    Array<{ name: string; slug: string; category: string }>
-  >([]);
+type supplement = {
+  name: string;
+  slug: string;
+  category: string;
+  description: string;
+  photo_url: string;
+  unit_price: number;
+  benefits: string[];
+};
 
-  useEffect(() => {
-    listSupplements()
-      .then((response) => setSupplements(response.data))
-      .catch(console.error);
-  }, []);
+function Shop() {
+  const query = useQuery(["supplements"], async () => await listSupplements());
 
   return (
     <div>
-      {supplements.map((supplement) => {
+      {query.data?.data.map((supplement: supplement) => {
         return <div key={supplement.slug}>{supplement.name}</div>;
       })}
     </div>

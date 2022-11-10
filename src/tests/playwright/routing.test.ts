@@ -37,9 +37,9 @@ test("Quiz page renders", async ({ page }) => {
   await expect(page.getByText("Quiz")).toBeVisible();
 });
 
-test("Shop page renders", async ({ page }) => {
+test("Shop page lists supplements", async ({ page }) => {
   await page.goto("/shop");
-  await expect(page.getByText("Shop")).toBeVisible();
+  await expect(page.getByText("Vitamin B-12")).toBeVisible();
 });
 
 test("Supplement page renders", async ({ page }) => {
