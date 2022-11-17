@@ -18,13 +18,25 @@ type supplement = {
 function Shop() {
   const query = useQuery(["supplements"], async () => await listSupplements());
 
-  return (
-    <div>
-      {query.data?.data.map((supplement: supplement) => {
-        return <div key={supplement.slug}>{supplement.name}</div>;
-      })}
-    </div>
-  );
+  if (query.isLoading) {
+    return null;
+  }
+
+  if (query.isError) {
+    return <div>Something went wrong</div>;
+  }
+
+  if (query.data) {
+    return (
+      <div>
+        {query.data.data.map((supplement: supplement) => {
+          return <div key={supplement.slug}>{supplement.name}</div>;
+        })}
+      </div>
+    );
+  }
+
+  return <div>Supplement not found</div>;
 }
 
 export default Shop;
