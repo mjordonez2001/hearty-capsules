@@ -28,7 +28,7 @@ function Pages() {
             <Route path="/login" element={<Login />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/shop" element={<Shop />} />
-            <Route path="/supplement" element={<Supplement />} />
+            <Route path="/:slug" element={<Supplement />} />
           </Routes>
         </Suspense>
       </div>
