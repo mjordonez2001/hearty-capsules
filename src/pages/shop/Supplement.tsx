@@ -12,12 +12,12 @@ export type supplementProps = {
 
 function Supplement({ name, slug, unit_price, photo_url }: supplementProps) {
   return (
-    <Link to="/">
+    <Link to={`/${slug}`}>
       <div className="card">
         <img src={photo_url} className="card-img-top" alt="..." />
-        <div className="card-body">
+        <div className="card-body text-center">
           <h5 className="card-title">{name}</h5>
-          <p className="card-text">Some quick example .</p>
+          <p className="card-text">${unit_price}</p>
         </div>
       </div>
     </Link>
