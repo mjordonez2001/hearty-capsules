@@ -10,7 +10,7 @@ function Shop() {
   const query = useQuery(["supplements"], async () => await listSupplements());
 
   return (
-    <div className="d-flex row justify-content-center mx-5">
+    <div className="d-flex row justify-content-center m-5">
       {query.data?.data.map((supplement: supplementProps) => {
         return (
           <div key={supplement.slug} className="my-4 col-8 col-md-4 col-lg-3">
