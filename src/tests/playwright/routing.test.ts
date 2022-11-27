@@ -44,5 +44,5 @@ test("Shop page lists supplements", async ({ page }) => {
 
 test("Supplement page renders", async ({ page }) => {
   await page.goto("/supplement");
-  await expect(page.getByText("Supplement")).toBeVisible();
+  await expect(page.getByText("Add to Cart")).toBeVisible();
 });
