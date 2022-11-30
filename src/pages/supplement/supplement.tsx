@@ -1,13 +1,11 @@
-import { axiosClient } from "../../utils/axios";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-
-async function getSupplement(slug: string) {
-  return await axiosClient.get(`/supplement/${slug}`);
-}
+import { addToCart } from "../cart/addToCart";
+import { getSupplement } from "../../utils/routes";
 
 function Supplement() {
   const params = useParams();
+  const { isLoading, mutate: addItem } = addToCart();
 
   const query = useQuery(
     ["supplement", params.slug],
@@ -37,8 +35,12 @@ function Supplement() {
           </ul>
         </div>
         <div className="fs-3">${query.data?.data.unit_price}</div>
-        <button type="button" className="btn btn-primary my-2">
-          Add to Cart
+        <button
+          type="button"
+          className="btn btn-primary my-2"
+          onClick={() => addItem()}
+        >
+          {isLoading ? "Loading..." : "Add to Cart"}
         </button>
       </div>
     </div>

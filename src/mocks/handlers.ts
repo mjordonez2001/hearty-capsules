@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { supplements } from "../data/supplements";
+import { cart } from "../data/cart";
 
 export const handlers = [
   rest.get("/supplements", (req, res, ctx) => {
@@ -14,5 +15,10 @@ export const handlers = [
     }
 
     return res(ctx.status(200), ctx.json(supplement));
+  }),
+
+  rest.post("/cart_items", (req, res, ctx) => {
+    console.log(req);
+    return res(ctx.delay(500), ctx.status(201));
   }),
 ];
