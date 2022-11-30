@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatPrice } from "../../utils/format";
 
 export type supplementProps = {
   name: string;
@@ -21,7 +22,7 @@ function Supplement({ name, slug, unit_price, photo_url }: supplementProps) {
         />
         <div className="card-body text-center">
           <div className="card-title">{name}</div>
-          <p className="card-text">${unit_price}</p>
+          <p className="card-text">{unit_price && formatPrice(unit_price)}</p>
         </div>
       </div>
     </Link>
