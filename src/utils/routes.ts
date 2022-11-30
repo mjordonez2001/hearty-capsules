@@ -1,6 +1,6 @@
 import { axiosClient } from "./axios";
 
-type CartItem = {
+export type CartItem = {
   product_name: string;
   product_sku: string;
   unit_price: number;

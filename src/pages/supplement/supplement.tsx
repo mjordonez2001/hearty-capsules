@@ -5,7 +5,6 @@ import { getSupplement } from "../../utils/routes";
 
 function Supplement() {
   const params = useParams();
-  const { isLoading, mutate: addItem } = addToCart();
 
   const query = useQuery(
     ["supplement", params.slug],
@@ -18,6 +17,13 @@ function Supplement() {
   if (query.isError) {
     return <div>Something went wrong</div>;
   }
+
+  const { isLoading, mutate: addItem } = addToCart({
+    product_name: query.data?.data.name,
+    product_sku: query.data?.data.sku,
+    unit_price: query.data?.data.unit_price,
+    quantity: 1,
+  });
 
   return (
     <div className="d-flex m-5 justify-content-evenly">

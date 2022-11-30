@@ -17,8 +17,9 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(supplement));
   }),
 
-  rest.post("/cart_items", (req, res, ctx) => {
-    console.log(req);
-    return res(ctx.delay(500), ctx.status(201));
+  rest.post("/cart_items", async (req, res, ctx) => {
+    const data = await req.json();
+    cart.push(data);
+    return await res(ctx.delay(500), ctx.status(201));
   }),
 ];
