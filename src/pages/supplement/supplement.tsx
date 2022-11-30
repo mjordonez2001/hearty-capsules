@@ -1,15 +1,25 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { addToCart } from "../cart/addToCart";
+import { useAddToCart } from "../cart/useAddToCart";
 import { getSupplement } from "../../utils/routes";
+import { useState } from "react";
 
 function Supplement() {
   const params = useParams();
+
+  const [quantity, setQuantity] = useState(1);
 
   const query = useQuery(
     ["supplement", params.slug],
     async () => await getSupplement(params.slug ?? "")
   );
+
+  const { isLoading, mutate: addItem } = useAddToCart({
+    product_name: query.data?.data.name,
+    product_sku: query.data?.data.sku,
+    unit_price: query.data?.data.unit_price,
+    quantity,
+  });
 
   if (query.isLoading) {
     return <div>Loading...</div>;
@@ -17,13 +27,6 @@ function Supplement() {
   if (query.isError) {
     return <div>Something went wrong</div>;
   }
-
-  const { isLoading, mutate: addItem } = addToCart({
-    product_name: query.data?.data.name,
-    product_sku: query.data?.data.sku,
-    unit_price: query.data?.data.unit_price,
-    quantity: 1,
-  });
 
   return (
     <div className="d-flex m-5 justify-content-evenly">
@@ -41,13 +44,21 @@ function Supplement() {
           </ul>
         </div>
         <div className="fs-3">${query.data?.data.unit_price}</div>
+
         <button
           type="button"
           className="btn btn-primary my-2"
           onClick={() => addItem()}
+          disabled={isLoading}
         >
           {isLoading ? "Loading..." : "Add to Cart"}
         </button>
+        <input
+          type="number"
+          min={1}
+          value={quantity}
+          onChange={(event) => setQuantity(Number(event.target.value || 1))}
+        />
       </div>
     </div>
   );

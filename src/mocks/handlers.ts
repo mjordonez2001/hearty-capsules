@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import { supplements } from "../data/supplements";
 import { cart } from "../data/cart";
+import { cartItemSchema } from "../utils/types";
 
 export const handlers = [
   rest.get("/supplements", (req, res, ctx) => {
@@ -19,7 +20,22 @@ export const handlers = [
 
   rest.post("/cart_items", async (req, res, ctx) => {
     const data = await req.json();
-    cart.push(data);
+    const result = cartItemSchema.safeParse(data);
+
+    if (!result.success) {
+      return await res(ctx.json({ error: result.error }), ctx.status(401));
+    }
+
+    const item = cart.find(
+      (item) => item.product_sku === result.data.product_sku
+    );
+
+    if (item) {
+      item.quantity += result.data.quantity;
+    } else {
+      cart.push(result.data);
+    }
+
     return await res(ctx.delay(500), ctx.status(201));
   }),
 ];
