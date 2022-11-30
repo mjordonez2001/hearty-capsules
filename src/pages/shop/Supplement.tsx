@@ -14,9 +14,13 @@ function Supplement({ name, slug, unit_price, photo_url }: supplementProps) {
   return (
     <Link to={`/${slug}`} className="text-decoration-none text-dark">
       <div className="card">
-        <img src={photo_url} className="card-img-top" alt="..." />
+        <img
+          src={photo_url}
+          className="card-img-top"
+          alt={`Photo of ${name} supplement`}
+        />
         <div className="card-body text-center">
-          <h5 className="card-title">{name}</h5>
+          <div className="card-title">{name}</div>
           <p className="card-text">${unit_price}</p>
         </div>
       </div>
