@@ -14,6 +14,13 @@ function Supplement() {
     async () => await getSupplement(params.slug ?? "")
   );
 
+  if (query.isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (query.isError) {
+    return <div>Something went wrong</div>;
+  }
+
   return (
     <div className="d-flex m-5 justify-content-evenly">
       <img src={query.data?.data.photo_url} className="col-5" alt="..." />
