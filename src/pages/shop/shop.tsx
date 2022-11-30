@@ -1,42 +1,37 @@
 import { axiosClient } from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
+import Supplement, { supplementProps } from "./Supplement";
 
 async function listSupplements() {
   return await axiosClient.get("/supplements");
 }
 
-type supplement = {
-  name: string;
-  slug: string;
-  category: string;
-  description: string;
-  photo_url: string;
-  unit_price: number;
-  benefits: string[];
-};
-
 function Shop() {
   const query = useQuery(["supplements"], async () => await listSupplements());
 
   if (query.isLoading) {
-    return null;
+    return <div>Loading...</div>;
   }
-
   if (query.isError) {
     return <div>Something went wrong</div>;
   }
 
-  if (query.data) {
-    return (
-      <div>
-        {query.data.data.map((supplement: supplement) => {
-          return <div key={supplement.slug}>{supplement.name}</div>;
-        })}
-      </div>
-    );
-  }
-
-  return <div>Supplement not found</div>;
+  return (
+    <div className="d-flex row justify-content-center m-5">
+      {query.data?.data.map((supplement: supplementProps) => {
+        return (
+          <div key={supplement.slug} className="my-4 col-8 col-md-4 col-lg-3">
+            <Supplement
+              slug={supplement.slug}
+              name={supplement.name}
+              unit_price={supplement.unit_price}
+              photo_url={supplement.photo_url}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default Shop;
