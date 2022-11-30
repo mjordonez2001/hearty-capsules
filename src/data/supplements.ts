@@ -2,7 +2,7 @@ export const supplements = [
   {
     name: "B-Complex",
     slug: "b-complex",
-    category: "vitamins",
+    category: "Vitamin",
     description: "Supports the nervous system. Promotes energy metabolism",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -12,7 +12,7 @@ export const supplements = [
   {
     name: "Vitamin B-12",
     slug: "vitamin-b12",
-    category: "vitamins",
+    category: "Vitamin",
     description:
       "Supports cognitive and nervous system health. Supports energy metabolism",
     photo_url:
@@ -23,7 +23,7 @@ export const supplements = [
   {
     name: "Vitamin C",
     slug: "vitamin-c",
-    category: "vitamins",
+    category: "Vitamin",
     description: "Helps maintain a healthy immune system",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -33,7 +33,7 @@ export const supplements = [
   {
     name: "Vitamin D",
     slug: "vitamin-d",
-    category: "vitamins",
+    category: "Vitamin",
     description:
       "Supports calcium absorption and bone health. Helps regulate immune cells",
     photo_url:
@@ -44,7 +44,7 @@ export const supplements = [
   {
     name: "Calcium",
     slug: "calcium",
-    category: "minerals",
+    category: "Mineral",
     description: "Supports bone health",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -54,7 +54,7 @@ export const supplements = [
   {
     name: "Iron",
     slug: "iron",
-    category: "minerals",
+    category: "Mineral",
     description: "Critical for red blood cell production",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -64,7 +64,7 @@ export const supplements = [
   {
     name: "Magnesium",
     slug: "magnesium",
-    category: "minerals",
+    category: "Mineral",
     description: "Essential mineral for over 300 reactions in the body",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -74,7 +74,7 @@ export const supplements = [
   {
     name: "Zinc",
     slug: "zinc",
-    category: "minerals",
+    category: "Mineral",
     description: "Essential mineral for immune health and digestion",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -84,7 +84,7 @@ export const supplements = [
   {
     name: "Ashwagandha",
     slug: "ashwagandha",
-    category: "herbs",
+    category: "Herb",
     description: "Helps relieve occasional stress and tension",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -94,7 +94,7 @@ export const supplements = [
   {
     name: "Shatavary",
     slug: "shatavary",
-    category: "herbs",
+    category: "Herb",
     description: "Helps with hormonal breakouts",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -104,7 +104,7 @@ export const supplements = [
   {
     name: "Elderberry",
     slug: "elderberry",
-    category: "herbs",
+    category: "Herb",
     description:
       "Promotes healthy immune function. Powerful antioxidant properties",
     photo_url:
@@ -115,7 +115,7 @@ export const supplements = [
   {
     name: "Rhodiola",
     slug: "rhodiola",
-    category: "herbs",
+    category: "Herb",
     description: "Supports a healthy response to occasional stress",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -125,7 +125,7 @@ export const supplements = [
   {
     name: "Astaxanthin",
     slug: "astaxanthin",
-    category: "specialty",
+    category: "Specialty",
     description:
       "Supports brain, heart, skin, and eye health. Helps athletic performance and recovery",
     photo_url:
@@ -136,7 +136,7 @@ export const supplements = [
   {
     name: "Fish Oil",
     slug: "fish-oil",
-    category: "specialty",
+    category: "Specialty",
     description: "Supports heart health",
     photo_url:
       "https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg",
@@ -146,7 +146,7 @@ export const supplements = [
   {
     name: "Keratin",
     slug: "keratin",
-    category: "specialty",
+    category: "Specialty",
     description:
       "Supports hair fullness and shine. Supports nail strength. Essential protein for hair, skin, and nails",
     photo_url:
@@ -157,7 +157,7 @@ export const supplements = [
   {
     name: "Collagen",
     slug: "collagen",
-    category: "specialty",
+    category: "Specialty",
     description:
       "Supports skin hydration and elasticity. Helps stimulate hair and nail growth",
     photo_url:

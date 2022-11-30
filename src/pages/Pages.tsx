@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "../marginals/Header";
 import Footer from "../marginals/Footer";
+import NotFound from "./NotFound";
 
 const Home = lazy(async () => await import("./home/home"));
 const Account = lazy(async () => await import("./account/account"));
@@ -28,7 +29,8 @@ function Pages() {
             <Route path="/login" element={<Login />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/shop" element={<Shop />} />
-            <Route path="/supplement" element={<Supplement />} />
+            <Route path="/supplement/:slug" element={<Supplement />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </div>
