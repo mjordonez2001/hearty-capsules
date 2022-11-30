@@ -24,7 +24,7 @@ test("Checkout page renders", async ({ page }) => {
 
 test("Contact page renders", async ({ page }) => {
   await page.goto("/contact");
-  await expect(page.getByText("Contact")).toBeVisible();
+  await expect(page.getByText("Contact").first()).toBeVisible();
 });
 
 test("Login page renders", async ({ page }) => {
@@ -34,7 +34,7 @@ test("Login page renders", async ({ page }) => {
 
 test("Quiz page renders", async ({ page }) => {
   await page.goto("/quiz");
-  await expect(page.getByText("Quiz")).toBeVisible();
+  await expect(page.getByText("Quiz").first()).toBeVisible();
 });
 
 test("Shop page lists supplements", async ({ page }) => {
