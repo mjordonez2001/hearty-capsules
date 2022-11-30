@@ -1,11 +1,5 @@
 import { axiosClient } from "./axios";
-
-export type CartItem = {
-  product_name: string;
-  product_sku: string;
-  unit_price: number;
-  quantity: number;
-};
+import { CartItem } from "./types";
 
 export async function addCartItem(data: CartItem) {
   return await axiosClient.post("/cart_items", data);
