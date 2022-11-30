@@ -1,7 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { addCartItem, CartItem } from "../../utils/routes";
+import { addCartItem } from "../../utils/routes";
+import { CartItem } from "../../utils/types";
 
-export function addToCart(item: CartItem) {
+export function useAddToCart(item: CartItem) {
   const { data, error, isLoading, mutate } = useMutation(
     async () => await addCartItem(item)
   );
