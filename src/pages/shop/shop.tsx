@@ -9,6 +9,13 @@ async function listSupplements() {
 function Shop() {
   const query = useQuery(["supplements"], async () => await listSupplements());
 
+  if (query.isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (query.isError) {
+    return <div>Something went wrong</div>;
+  }
+
   return (
     <div className="d-flex row justify-content-center m-5">
       {query.data?.data.map((supplement: supplementProps) => {
