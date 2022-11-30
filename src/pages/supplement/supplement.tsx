@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useAddToCart } from "../cart/useAddToCart";
 import { getSupplement } from "../../utils/routes";
 import { useState } from "react";
+import { SlArrowUp, SlArrowDown } from "react-icons/sl";
+import { formatPrice } from "../../utils/format";
 
 function Supplement() {
   const params = useParams();
@@ -43,22 +45,39 @@ function Supplement() {
             })}
           </ul>
         </div>
-        <div className="fs-3">${query.data?.data.unit_price}</div>
+        <div className="fs-3">{formatPrice(query.data?.data.unit_price)}</div>
 
-        <button
-          type="button"
-          className="btn btn-primary my-2"
-          onClick={() => addItem()}
-          disabled={isLoading}
-        >
-          {isLoading ? "Loading..." : "Add to Cart"}
-        </button>
-        <input
-          type="number"
-          min={1}
-          value={quantity}
-          onChange={(event) => setQuantity(Number(event.target.value || 1))}
-        />
+        <div className="my-2">
+          <div className="input-group input-group-sm mb-2">
+            <span className="input-group-text">Quantity: {quantity}</span>
+            <button
+              className="btn btn-outline-secondary d-flex align-items-center"
+              onClick={() =>
+                setQuantity((currentQuantity) => currentQuantity + 1)
+              }
+            >
+              <SlArrowUp />
+            </button>
+            <button
+              className="btn btn-outline-secondary d-flex align-items-center"
+              disabled={quantity < 2}
+              onClick={() =>
+                setQuantity((currentQuantity) => currentQuantity - 1)
+              }
+            >
+              <SlArrowDown />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => addItem()}
+            disabled={isLoading}
+          >
+            {isLoading ? "Loading..." : "Add to Cart"}
+          </button>
+        </div>
       </div>
     </div>
   );
