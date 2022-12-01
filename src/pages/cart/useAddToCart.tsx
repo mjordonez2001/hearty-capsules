@@ -1,11 +1,58 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, UseMutationOptions } from "@tanstack/react-query";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { addCartItem } from "../../utils/routes";
 import { CartItem } from "../../utils/types";
 
-export function useAddToCart(item: CartItem) {
-  const { data, error, isLoading, mutate } = useMutation(
-    async () => await addCartItem(item)
+export function useAddToCart(item: CartItem, options?: UseMutationOptions) {
+  const navigate = useNavigate();
+
+  const { data, error, isLoading, isSuccess, mutate } = useMutation(
+    async () => await addCartItem(item),
+    options
   );
 
-  return { data, error, isLoading, mutate };
+  const SuccessModal = React.useMemo(() => {
+    const Modal = () => {
+      return (
+        <div id="success" className="modal fade">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  Successfully added to cart!
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  onClick={() => navigate("/cart")}
+                >
+                  View Cart
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Continue shopping
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+    return Modal;
+  }, [navigate]);
+
+  return { data, error, isLoading, isSuccess, mutate, SuccessModal };
 }

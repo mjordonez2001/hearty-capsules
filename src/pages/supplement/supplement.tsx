@@ -5,6 +5,7 @@ import { getSupplement } from "../../utils/routes";
 import { useState } from "react";
 import { SlArrowUp, SlArrowDown } from "react-icons/sl";
 import { formatPrice } from "../../utils/format";
+import * as bootstrap from "bootstrap";
 
 function Supplement() {
   const params = useParams();
@@ -16,12 +17,24 @@ function Supplement() {
     async () => await getSupplement(params.slug ?? "")
   );
 
-  const { isLoading, mutate: addItem } = useAddToCart({
-    product_name: query.data?.data.name,
-    product_sku: query.data?.data.sku,
-    unit_price: query.data?.data.unit_price,
-    quantity,
-  });
+  const {
+    SuccessModal,
+    error: addToCartError,
+    isLoading,
+    mutate: addItem,
+  } = useAddToCart(
+    {
+      product_name: query.data?.data.name,
+      product_sku: query.data?.data.sku,
+      unit_price: query.data?.data.unit_price,
+      quantity,
+    },
+    {
+      onSuccess: () => {
+        new bootstrap.Modal("#success").show();
+      },
+    }
+  );
 
   if (query.isLoading) {
     return <div>Loading...</div>;
@@ -49,7 +62,7 @@ function Supplement() {
 
         <div className="my-2">
           <div className="input-group input-group-sm mb-2">
-            <span className="input-group-text">Quantity: {quantity}</span>
+            <span className="input-group-text">Qty: {quantity}</span>
             <button
               className="btn btn-outline-secondary d-flex align-items-center"
               onClick={() =>
@@ -68,7 +81,6 @@ function Supplement() {
               <SlArrowDown />
             </button>
           </div>
-
           <button
             type="button"
             className="btn btn-primary"
@@ -77,6 +89,13 @@ function Supplement() {
           >
             {isLoading ? "Loading..." : "Add to Cart"}
           </button>
+          {!!addToCartError && (
+            <div className="alert alert-danger" role="alert">
+              Uh oh, something went wrong!
+            </div>
+          )}
+
+          <SuccessModal />
         </div>
       </div>
     </div>
