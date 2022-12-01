@@ -1,15 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../utils/format";
-
-export type supplementProps = {
-  name: string;
-  slug: string;
-  category?: string;
-  description?: string;
-  photo_url?: string;
-  unit_price?: number;
-  benefits?: string[];
-};
+import { supplementProps } from "../../utils/types";
 
 function Supplement({ name, slug, unit_price, photo_url }: supplementProps) {
   return (

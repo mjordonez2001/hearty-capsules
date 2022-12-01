@@ -1,6 +1,7 @@
 import { axiosClient } from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import Supplement, { supplementProps } from "./Supplement";
+import Supplement from "./Supplement";
+import { supplementProps } from "../../utils/types";
 
 async function listSupplements() {
   return await axiosClient.get("/supplements");
