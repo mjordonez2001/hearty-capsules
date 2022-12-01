@@ -16,6 +16,7 @@ function Supplement() {
     ["supplement", params.slug],
     async () => await getSupplement(params.slug ?? "")
   );
+  const supplement = query.data?.data;
 
   const {
     SuccessModal,
@@ -24,9 +25,9 @@ function Supplement() {
     mutate: addItem,
   } = useAddToCart(
     {
-      product_name: query.data?.data.name,
-      product_sku: query.data?.data.sku,
-      unit_price: query.data?.data.unit_price,
+      product_name: supplement?.name,
+      product_sku: supplement?.sku,
+      unit_price: supplement?.unit_price,
       quantity,
     },
     {
@@ -45,20 +46,20 @@ function Supplement() {
 
   return (
     <div className="d-flex m-5 justify-content-evenly">
-      <img src={query.data?.data.photo_url} className="col-5" alt="..." />
+      <img src={supplement?.photo_url} className="col-5" alt="..." />
       <div className="px-5 col-6">
-        <div className="fst-italic">{query.data?.data.category}</div>
-        <h2>{query.data?.data.name}</h2>
-        <div>{query.data?.data.description}</div>
+        <div className="fst-italic">{supplement?.category}</div>
+        <h2>{supplement?.name}</h2>
+        <div>{supplement?.description}</div>
         <div className="my-2">
           Good for:
           <ul>
-            {query.data?.data.benefits.map((benefit: string) => {
+            {supplement?.benefits.map((benefit: string) => {
               return <li key={benefit}>{benefit}</li>;
             })}
           </ul>
         </div>
-        <div className="fs-3">{formatPrice(query.data?.data.unit_price)}</div>
+        <div className="fs-3">{formatPrice(supplement?.unit_price)}</div>
 
         <div className="my-2">
           <div className="input-group input-group-sm mb-2">
