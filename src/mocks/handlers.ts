@@ -18,6 +18,10 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(supplement));
   }),
 
+  rest.get("/cart", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(cart));
+  }),
+
   rest.post("/cart", async (req, res, ctx) => {
     const data = await req.json();
     const result = cartItemSchema.safeParse(data);

@@ -5,6 +5,7 @@ export const cartItemSchema = zod.object({
   product_sku: zod.string(),
   unit_price: zod.number(),
   quantity: zod.number(),
+  product_img: zod.string().optional(),
 });
 
 export type CartItem = zod.infer<typeof cartItemSchema>;

@@ -12,3 +12,7 @@ export async function getSupplement(slug: string) {
 export async function listSupplements() {
   return await axiosClient.get("/supplements");
 }
+
+export async function getCart() {
+  return await axiosClient.get("/cart");
+}
