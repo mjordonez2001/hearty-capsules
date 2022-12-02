@@ -25,10 +25,18 @@ function Cart() {
             </div>
           </div>
         ) : (
-          <div className="col-6">
-            {cart.map((item: CartItem) => {
-              return <Item item={item} key={item.product_sku} />;
-            })}
+          <div className="col-8">
+            <div>
+              {cart.map((item: CartItem) => {
+                return <Item item={item} key={item.product_sku} />;
+              })}
+            </div>
+            <div className="d-flex justify-content-end">
+              <Link to="/shop" className="btn btn-outline-secondary mx-2">
+                Continue shopping
+              </Link>
+              <button className="btn btn-primary">Checkout</button>
+            </div>
           </div>
         )}
       </div>
