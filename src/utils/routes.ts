@@ -8,3 +8,7 @@ export async function addCartItem(data: CartItem) {
 export async function getSupplement(slug: string) {
   return await axiosClient.get(`/supplement/${slug}`);
 }
+
+export async function listSupplements() {
+  return await axiosClient.get("/supplements");
+}
