@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CartItem } from "../../utils/types";
 import Item from "./Item";
 import { getCart } from "../../utils/routes";
+import { formatPrice } from "../../utils/format";
 
 function Cart() {
   const query = useQuery(["cart"], async () => await getCart());
@@ -43,7 +44,14 @@ function Cart() {
                 return <Item item={item} key={item.product_sku} />;
               })}
             </div>
-            <div>Total: {total}</div>
+            <div className="d-flex justify-content-end my-3">
+              <div>
+                <div className="fs-3">Total: {formatPrice(total)}</div>
+                <div className="d-flex justify-content-end fw-lighter">
+                  Before taxes
+                </div>
+              </div>
+            </div>
             <div className="d-flex justify-content-end">
               <Link to="/shop" className="btn btn-outline-secondary mx-2">
                 Continue shopping

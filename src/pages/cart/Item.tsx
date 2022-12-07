@@ -32,7 +32,7 @@ function Item({ item }: ItemProps) {
   }, [quantity]);
 
   return (
-    <div className="d-flex m-3 justify-content-betweens align-items-center">
+    <div className="d-flex m-3 justify-content-between align-items-center">
       <img
         src={item.product_img}
         className="col-3"
@@ -64,6 +64,11 @@ function Item({ item }: ItemProps) {
         </div>
       </div>
       <div className="fs-4">{formatPrice(item.quantity * item.unit_price)}</div>
+      {!!updateItemError && (
+        <div className="alert alert-danger" role="alert">
+          Uh oh, something went wrong!
+        </div>
+      )}
     </div>
   );
 }
