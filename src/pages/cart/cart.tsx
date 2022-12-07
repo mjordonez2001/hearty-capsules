@@ -6,13 +6,25 @@ import { getCart } from "../../utils/routes";
 
 function Cart() {
   const query = useQuery(["cart"], async () => await getCart());
-  const cart = query.data?.data;
+
+  if (query.isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (query.isError) {
+    return <div>Something went wrong</div>;
+  }
+
+  const cart = query.data.data;
+  let total = 0;
+  cart.forEach((item: CartItem) => {
+    total += item.unit_price * item.quantity;
+  });
 
   return (
     <div className="m-5">
       <h2 className="mb-4 text-center">Cart</h2>
       <div className="d-flex justify-content-center">
-        {!cart?.length ? (
+        {!cart.length ? (
           <div>
             <div className="fs-5 text-center">
               Your cart is empty! Browse our products to begin your wellness
@@ -31,6 +43,7 @@ function Cart() {
                 return <Item item={item} key={item.product_sku} />;
               })}
             </div>
+            <div>Total: {total}</div>
             <div className="d-flex justify-content-end">
               <Link to="/shop" className="btn btn-outline-secondary mx-2">
                 Continue shopping
