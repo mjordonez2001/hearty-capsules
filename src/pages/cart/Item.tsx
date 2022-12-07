@@ -1,21 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { formatPrice } from "../../utils/format";
 import { CartItem } from "../../utils/types";
 import { SlArrowUp, SlArrowDown } from "react-icons/sl";
+import { useQueryClient } from "@tanstack/react-query";
+import { useUpdateCart } from "./useUpdateCart";
 
 type ItemProps = {
   item: CartItem;
-  key: string;
 };
 
-function Item({ item, key }: ItemProps) {
+function Item({ item }: ItemProps) {
   const [quantity, setQuantity] = useState(item.quantity);
+  const queryClient = useQueryClient();
+
+  const { error: updateItemError, mutate: updateItem } = useUpdateCart(
+    {
+      ...item,
+      quantity,
+    },
+    {
+      onSuccess: () => {
+        queryClient
+          .invalidateQueries({ queryKey: ["cart"] })
+          .catch(console.error);
+      },
+    }
+  );
+
+  useEffect(() => {
+    updateItem();
+  }, [quantity]);
 
   return (
-    <div
-      key={item.product_sku}
-      className="d-flex m-3 justify-content-between align-items-center"
-    >
+    <div className="d-flex m-3 justify-content-betweens align-items-center">
       <img
         src={item.product_img}
         className="col-3"

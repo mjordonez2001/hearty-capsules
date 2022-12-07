@@ -42,4 +42,25 @@ export const handlers = [
 
     return await res(ctx.delay(500), ctx.status(201));
   }),
+
+  rest.put("/cart", async (req, res, ctx) => {
+    const data = await req.json();
+    const result = cartItemSchema.safeParse(data);
+
+    if (!result.success) {
+      return await res(ctx.json({ error: result.error }), ctx.status(401));
+    }
+
+    const item = cart.find(
+      (item) => item.product_sku === result.data.product_sku
+    );
+
+    if (item) {
+      item.quantity = result.data.quantity;
+    } else {
+      return await res(ctx.json({ error: `item not found` }), ctx.status(404));
+    }
+
+    return await res(ctx.status(204));
+  }),
 ];

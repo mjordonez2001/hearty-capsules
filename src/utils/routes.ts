@@ -16,3 +16,7 @@ export async function listSupplements() {
 export async function getCart() {
   return await axiosClient.get("/cart");
 }
+
+export async function updateCartItem(data: CartItem) {
+  return await axiosClient.put("/cart", data);
+}
