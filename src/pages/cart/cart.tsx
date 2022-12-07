@@ -56,7 +56,9 @@ function Cart() {
               <Link to="/shop" className="btn btn-outline-secondary mx-2">
                 Continue shopping
               </Link>
-              <button className="btn btn-primary">Checkout</button>
+              <Link to="/checkout" className="btn btn-primary">
+                Checkout
+              </Link>
             </div>
           </div>
         )}
