@@ -18,7 +18,7 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(supplement));
   }),
 
-  rest.post("/cart_items", async (req, res, ctx) => {
+  rest.post("/cart", async (req, res, ctx) => {
     const data = await req.json();
     const result = cartItemSchema.safeParse(data);
 

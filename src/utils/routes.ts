@@ -2,7 +2,7 @@ import { axiosClient } from "./axios";
 import { CartItem } from "./types";
 
 export async function addCartItem(data: CartItem) {
-  return await axiosClient.post("/cart_items", data);
+  return await axiosClient.post("/cart", data);
 }
 
 export async function getSupplement(slug: string) {
