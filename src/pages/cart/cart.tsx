@@ -22,7 +22,7 @@ function Cart() {
   });
 
   return (
-    <div className="m-5">
+    <div className="m-4">
       <h2 className="mb-4 text-center">Cart</h2>
       <div className="d-flex justify-content-center">
         {!cart.length ? (
