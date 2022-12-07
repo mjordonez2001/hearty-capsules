@@ -12,11 +12,11 @@ export type CartItem = zod.infer<typeof cartItemSchema>;
 export const supplementSchema = zod.object({
   name: zod.string(),
   slug: zod.string(),
-  category: zod.string().optional(),
-  description: zod.string().optional(),
-  photo_url: zod.string().optional(),
-  unit_price: zod.number().optional(),
-  benefits: zod.string().array().optional(),
+  category: zod.string(),
+  description: zod.string(),
+  photo_url: zod.string(),
+  unit_price: zod.number(),
+  benefits: zod.string().array(),
 });
 
 export type supplementProps = zod.infer<typeof supplementSchema>;
