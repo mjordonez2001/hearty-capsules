@@ -25,7 +25,6 @@ export type supplementProps = zod.infer<typeof supplementSchema>;
 export const orderSchema = zod.object({
   cart: zod.object({ cartItemSchema }).array(),
   tracking_number: zod.string(),
-  subtotal: zod.number(),
   total: zod.number(),
 });
 

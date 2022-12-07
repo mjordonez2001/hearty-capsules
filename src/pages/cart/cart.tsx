@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CartItem } from "../../utils/types";
 import Item from "./Item";
 import { getCart } from "../../utils/routes";
-import { formatPrice } from "../../utils/format";
+import { findTotal, formatPrice } from "../../utils/format";
 
 function Cart() {
   const query = useQuery(["cart"], async () => await getCart());
@@ -16,10 +16,6 @@ function Cart() {
   }
 
   const cart = query.data.data;
-  let total = 0;
-  cart.forEach((item: CartItem) => {
-    total += item.unit_price * item.quantity;
-  });
 
   return (
     <div className="m-4">
@@ -46,7 +42,9 @@ function Cart() {
             </div>
             <div className="d-flex justify-content-end my-3">
               <div>
-                <div className="fs-3">Total: {formatPrice(total)}</div>
+                <div className="fs-3">
+                  Total: {formatPrice(findTotal(cart))}
+                </div>
                 <div className="d-flex justify-content-end fw-lighter">
                   Before taxes
                 </div>

@@ -1,3 +1,5 @@
+import { CartItem } from "./types";
+
 export function formatPrice(price: number, decimal = false) {
   let decimals: number;
   if (decimal) {
@@ -11,4 +13,13 @@ export function formatPrice(price: number, decimal = false) {
     currency: "USD",
     maximumFractionDigits: decimals,
   });
+}
+
+export function findTotal(cart: CartItem[]) {
+  let total = 0;
+  cart.forEach((item: CartItem) => {
+    total += item.unit_price * item.quantity;
+  });
+
+  return total;
 }
