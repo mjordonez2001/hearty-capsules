@@ -23,20 +23,11 @@ function Supplement() {
     error: addToCartError,
     isLoading,
     mutate: addItem,
-  } = useAddToCart(
-    {
-      product_name: supplement?.name,
-      product_sku: supplement?.sku,
-      unit_price: supplement?.unit_price,
-      quantity,
-      product_img: supplement?.photo_url,
+  } = useAddToCart({
+    onSuccess: () => {
+      new bootstrap.Modal("#success").show();
     },
-    {
-      onSuccess: () => {
-        new bootstrap.Modal("#success").show();
-      },
-    }
-  );
+  });
 
   if (query.isLoading) {
     return <div>Loading...</div>;
@@ -90,7 +81,15 @@ function Supplement() {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => addItem()}
+            onClick={() =>
+              addItem({
+                product_name: supplement?.name,
+                product_sku: supplement?.sku,
+                unit_price: supplement?.unit_price,
+                quantity,
+                product_img: supplement?.photo_url,
+              })
+            }
             disabled={isLoading}
           >
             {isLoading ? "Loading..." : "Add to Cart"}

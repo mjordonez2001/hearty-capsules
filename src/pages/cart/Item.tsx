@@ -14,19 +14,13 @@ function Item({ item }: ItemProps) {
   const [quantity, setQuantity] = useState(item.quantity);
   const queryClient = useQueryClient();
 
-  const { error: updateItemError, mutate: updateItem } = useUpdateCart(
-    {
-      ...item,
-      quantity,
+  const { error: updateItemError, mutate: updateItem } = useUpdateCart({
+    onSuccess: () => {
+      queryClient
+        .invalidateQueries({ queryKey: ["cart"] })
+        .catch(console.error);
     },
-    {
-      onSuccess: () => {
-        queryClient
-          .invalidateQueries({ queryKey: ["cart"] })
-          .catch(console.error);
-      },
-    }
-  );
+  });
 
   const { error: deleteItemError, mutate: deleteItem } = useDeleteItem({
     onSuccess: () => {
@@ -37,7 +31,10 @@ function Item({ item }: ItemProps) {
   });
 
   useEffect(() => {
-    updateItem();
+    updateItem({
+      ...item,
+      quantity,
+    });
   }, [quantity]);
 
   return (

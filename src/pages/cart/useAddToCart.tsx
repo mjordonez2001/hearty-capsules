@@ -1,14 +1,18 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { addCartItem } from "../../utils/routes";
 import { CartItem } from "../../utils/types";
 
-export function useAddToCart(item: CartItem, options?: UseMutationOptions) {
+type Options = {
+  onSuccess?: () => void;
+};
+
+export function useAddToCart(options?: Options) {
   const navigate = useNavigate();
 
   const { data, error, isLoading, isSuccess, mutate } = useMutation(
-    async () => await addCartItem(item),
+    async (item: CartItem) => await addCartItem(item),
     options
   );
 
