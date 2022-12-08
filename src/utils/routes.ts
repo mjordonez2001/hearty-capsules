@@ -1,5 +1,5 @@
 import { axiosClient } from "./axios";
-import { CartItem } from "./types";
+import { CartItem, Order } from "./types";
 
 export async function addCartItem(data: CartItem) {
   return await axiosClient.post("/cart", data);
@@ -23,4 +23,7 @@ export async function updateCartItem(data: CartItem) {
 
 export async function deleteCartItem(sku: string) {
   return await axiosClient.delete(`/cart/${sku}`);
+}
+export async function createOrder(data: Order) {
+  return await axiosClient.post("/orders", data);
 }

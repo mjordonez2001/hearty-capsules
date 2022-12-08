@@ -23,9 +23,10 @@ export const supplementSchema = zod.object({
 export type supplementProps = zod.infer<typeof supplementSchema>;
 
 export const orderSchema = zod.object({
-  cart: zod.object({ cartItemSchema }).array(),
-  tracking_number: zod.string(),
+  name: zod.string(),
+  cart: cartItemSchema.array(),
+  tracking_number: zod.string().optional(),
   total: zod.number(),
 });
 
-export type Order = zod.infer<typeof supplementSchema>;
+export type Order = zod.infer<typeof orderSchema>;

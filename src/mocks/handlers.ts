@@ -77,4 +77,9 @@ export const handlers = [
 
     return await res(ctx.delay(100), ctx.status(204));
   }),
+  rest.post("/orders", async (req, res, ctx) => {
+    const data = await req.json();
+    console.log(data);
+    return await res(ctx.delay(500), ctx.status(201));
+  }),
 ];

@@ -1,6 +1,6 @@
 export const states = (
   <>
-    <option defaultValue="">State</option>
+    <option value="">State</option>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
     <option value="AZ">Arizona</option>
