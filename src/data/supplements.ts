@@ -2,6 +2,7 @@ export const supplements = [
   {
     name: "B-Complex",
     slug: "b-complex",
+    sku: "b-complex",
     category: "Vitamin",
     description: "Supports the nervous system. Promotes energy metabolism",
     photo_url:
@@ -12,6 +13,7 @@ export const supplements = [
   {
     name: "Vitamin B-12",
     slug: "vitamin-b12",
+    sku: "vitamin-b12",
     category: "Vitamin",
     description:
       "Supports cognitive and nervous system health. Supports energy metabolism",
@@ -23,6 +25,7 @@ export const supplements = [
   {
     name: "Vitamin C",
     slug: "vitamin-c",
+    sku: "vitamin-c",
     category: "Vitamin",
     description: "Helps maintain a healthy immune system",
     photo_url:
@@ -33,6 +36,7 @@ export const supplements = [
   {
     name: "Vitamin D",
     slug: "vitamin-d",
+    sku: "vitamin-d",
     category: "Vitamin",
     description:
       "Supports calcium absorption and bone health. Helps regulate immune cells",
@@ -44,6 +48,7 @@ export const supplements = [
   {
     name: "Calcium",
     slug: "calcium",
+    sku: "calcium",
     category: "Mineral",
     description: "Supports bone health",
     photo_url:
@@ -54,6 +59,7 @@ export const supplements = [
   {
     name: "Iron",
     slug: "iron",
+    sku: "iron",
     category: "Mineral",
     description: "Critical for red blood cell production",
     photo_url:
@@ -64,6 +70,7 @@ export const supplements = [
   {
     name: "Magnesium",
     slug: "magnesium",
+    sku: "magnesium",
     category: "Mineral",
     description: "Essential mineral for over 300 reactions in the body",
     photo_url:
@@ -74,6 +81,7 @@ export const supplements = [
   {
     name: "Zinc",
     slug: "zinc",
+    sku: "zinc",
     category: "Mineral",
     description: "Essential mineral for immune health and digestion",
     photo_url:
@@ -84,6 +92,7 @@ export const supplements = [
   {
     name: "Ashwagandha",
     slug: "ashwagandha",
+    sku: "ashwagandha",
     category: "Herb",
     description: "Helps relieve occasional stress and tension",
     photo_url:
@@ -94,6 +103,7 @@ export const supplements = [
   {
     name: "Shatavary",
     slug: "shatavary",
+    sku: "shatavary",
     category: "Herb",
     description: "Helps with hormonal breakouts",
     photo_url:
@@ -104,6 +114,7 @@ export const supplements = [
   {
     name: "Elderberry",
     slug: "elderberry",
+    sku: "elderberry",
     category: "Herb",
     description:
       "Promotes healthy immune function. Powerful antioxidant properties",
@@ -115,6 +126,7 @@ export const supplements = [
   {
     name: "Rhodiola",
     slug: "rhodiola",
+    sku: "rhodiola",
     category: "Herb",
     description: "Supports a healthy response to occasional stress",
     photo_url:
@@ -125,6 +137,7 @@ export const supplements = [
   {
     name: "Astaxanthin",
     slug: "astaxanthin",
+    sku: "astaxanthin",
     category: "Specialty",
     description:
       "Supports brain, heart, skin, and eye health. Helps athletic performance and recovery",
@@ -136,6 +149,7 @@ export const supplements = [
   {
     name: "Fish Oil",
     slug: "fish-oil",
+    sku: "fish-oil",
     category: "Specialty",
     description: "Supports heart health",
     photo_url:
@@ -146,6 +160,7 @@ export const supplements = [
   {
     name: "Keratin",
     slug: "keratin",
+    sku: "keratin",
     category: "Specialty",
     description:
       "Supports hair fullness and shine. Supports nail strength. Essential protein for hair, skin, and nails",
@@ -157,6 +172,7 @@ export const supplements = [
   {
     name: "Collagen",
     slug: "collagen",
+    sku: "collagen",
     category: "Specialty",
     description:
       "Supports skin hydration and elasticity. Helps stimulate hair and nail growth",

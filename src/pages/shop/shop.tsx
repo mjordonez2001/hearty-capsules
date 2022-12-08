@@ -1,10 +1,7 @@
-import { axiosClient } from "../../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import Supplement, { supplementProps } from "./Supplement";
-
-async function listSupplements() {
-  return await axiosClient.get("/supplements");
-}
+import Supplement from "./Supplement";
+import { supplementProps } from "../../utils/types";
+import { listSupplements } from "../../utils/routes";
 
 function Shop() {
   const query = useQuery(["supplements"], async () => await listSupplements());
