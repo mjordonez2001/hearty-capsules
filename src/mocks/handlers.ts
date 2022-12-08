@@ -66,8 +66,6 @@ export const handlers = [
 
   rest.delete("/cart/:sku", async (req, res, ctx) => {
     const sku = req.params.sku;
-    console.log(sku);
-    console.log(cart);
     const item = cart.find((s) => s.product_sku === sku);
 
     if (item) {
