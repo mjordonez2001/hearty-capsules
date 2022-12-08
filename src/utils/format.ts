@@ -15,11 +15,28 @@ export function formatPrice(price: number, decimal = false) {
   });
 }
 
-export function findTotal(cart: CartItem[]) {
-  let total = 0;
-  cart.forEach((item: CartItem) => {
-    total += item.unit_price * item.quantity;
-  });
+export function findTotal(cart: CartItem[], state?: string) {
+  const subTotal = cart.reduce((accumulator: number, item: CartItem) => {
+    return (accumulator += item.unit_price * item.quantity);
+  }, 0);
 
-  return total;
+  const taxAmount = calculateTaxForState(subTotal, state);
+
+  return {
+    subTotal,
+    taxAmount,
+    total: subTotal + taxAmount,
+  };
+}
+
+function calculateTaxForState(subTotal: number, state?: string) {
+  if (state === "CA") {
+    return subTotal * 0.1;
+  }
+
+  if (state) {
+    return subTotal * 0.07;
+  }
+
+  return 0;
 }

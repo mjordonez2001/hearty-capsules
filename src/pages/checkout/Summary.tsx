@@ -1,31 +1,23 @@
-import { getCart } from "../../utils/routes";
-import { useQuery } from "@tanstack/react-query";
+import { formatPrice } from "../../utils/format";
 import { CartItem } from "../../utils/types";
-import { findTotal, formatPrice } from "../../utils/format";
 
-function Summary() {
-  const query = useQuery(["cart"], async () => await getCart());
+type Props = {
+  cart: CartItem[];
+  isSubmitting: boolean;
+  subTotal: number;
+  taxAmount: number;
+  total: number;
+};
 
-  if (query.isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (query.isError) {
-    return <div>Something went wrong</div>;
-  }
-
-  const cart = query.data.data;
-  const subtotal = findTotal(cart);
-  const tax = subtotal * 0.07;
-  const total = subtotal + tax;
-
+function Summary({ cart, subTotal, taxAmount, total, isSubmitting }: Props) {
   return (
     <div className="card">
       <div className="card-body">
-        <h3 className="card-title">Summary</h3>
+        <h3 className="mx-2 card-title">Summary</h3>
         <hr />
         <div className="card-text">
           <div>
-            {cart.map((item: CartItem) => {
+            {cart.map((item) => {
               return (
                 <div
                   key={item.product_sku}
@@ -42,7 +34,7 @@ function Summary() {
             })}
             <div className="m-2 mt-4 d-flex justify-content-between">
               <div className="fs-5">Subtotal</div>
-              <div>{formatPrice(subtotal, true)}</div>
+              <div>{formatPrice(subTotal, true)}</div>
             </div>
           </div>
 
@@ -54,7 +46,7 @@ function Summary() {
             </div>
             <div className="m-2 d-flex justify-content-between">
               <div>Taxes</div>
-              <div>{formatPrice(tax, true)}</div>
+              <div>{taxAmount ? formatPrice(taxAmount, true) : "-"}</div>
             </div>
           </div>
           <hr />
@@ -65,7 +57,13 @@ function Summary() {
           <div>{formatPrice(total, true)}</div>
         </div>
         <div className="d-flex justify-content-center">
-          <button className="btn btn-primary">Place Order</button>
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Loading..." : "Place Order"}
+          </button>
         </div>
       </div>
     </div>

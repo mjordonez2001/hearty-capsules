@@ -43,7 +43,7 @@ function Cart() {
             <div className="d-flex justify-content-end my-3">
               <div>
                 <div className="fs-3">
-                  Total: {formatPrice(findTotal(cart))}
+                  Total: {formatPrice(findTotal(cart).subTotal)}
                 </div>
                 <div className="d-flex justify-content-end fw-lighter">
                   Before taxes
