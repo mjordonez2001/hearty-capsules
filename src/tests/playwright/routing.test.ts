@@ -14,7 +14,7 @@ test("Account page renders", async ({ page }) => {
 
 test("Cart page renders", async ({ page }) => {
   await page.goto("/cart");
-  await expect(page.getByText("Cart")).toBeVisible();
+  await expect(page.getByText("Cart").first()).toBeVisible();
 });
 
 test("Checkout page renders", async ({ page }) => {

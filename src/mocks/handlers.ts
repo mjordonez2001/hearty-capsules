@@ -63,4 +63,20 @@ export const handlers = [
 
     return await res(ctx.status(204));
   }),
+
+  rest.delete("/cart/:sku", async (req, res, ctx) => {
+    const sku = req.params.sku;
+    console.log(sku);
+    console.log(cart);
+    const item = cart.find((s) => s.product_sku === sku);
+
+    if (item) {
+      const index = cart.indexOf(item);
+      cart.splice(index, 1);
+    } else {
+      return await res(ctx.json({ error: `item not found` }), ctx.status(404));
+    }
+
+    return await res(ctx.delay(100), ctx.status(204));
+  }),
 ];

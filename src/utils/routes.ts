@@ -20,3 +20,7 @@ export async function getCart() {
 export async function updateCartItem(data: CartItem) {
   return await axiosClient.put("/cart", data);
 }
+
+export async function deleteCartItem(sku: string) {
+  return await axiosClient.delete(`/cart/${sku}`);
+}

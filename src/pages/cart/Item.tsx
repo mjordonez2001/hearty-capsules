@@ -4,6 +4,7 @@ import { CartItem } from "../../utils/types";
 import { SlArrowUp, SlArrowDown } from "react-icons/sl";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateCart } from "./useUpdateCart";
+import { useDeleteItem } from "./useDeleteItem";
 
 type ItemProps = {
   item: CartItem;
@@ -26,6 +27,14 @@ function Item({ item }: ItemProps) {
       },
     }
   );
+
+  const { error: deleteItemError, mutate: deleteItem } = useDeleteItem({
+    onSuccess: () => {
+      queryClient
+        .invalidateQueries({ queryKey: ["cart"] })
+        .catch(console.error);
+    },
+  });
 
   useEffect(() => {
     updateItem();
@@ -63,8 +72,17 @@ function Item({ item }: ItemProps) {
           </button>
         </div>
       </div>
-      <div className="fs-4">{formatPrice(item.quantity * item.unit_price)}</div>
-      {!!updateItemError && (
+      <div className="d-flex align-items-center">
+        <div className="fs-4">
+          {formatPrice(item.quantity * item.unit_price)}
+        </div>
+        <button
+          type="button"
+          className="btn-close ms-3"
+          onClick={() => deleteItem(item.product_sku)}
+        ></button>
+      </div>
+      {(!!updateItemError || !!deleteItemError) && (
         <div className="alert alert-danger" role="alert">
           Uh oh, something went wrong!
         </div>
