@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { formatPrice } from "../../utils/format";
 import { CartItem } from "../../utils/types";
 import { SlArrowUp, SlArrowDown } from "react-icons/sl";
-import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateCart } from "./useUpdateCart";
 import { useDeleteItem } from "./useDeleteItem";
 
@@ -12,23 +11,10 @@ type ItemProps = {
 
 function Item({ item }: ItemProps) {
   const [quantity, setQuantity] = useState(item.quantity);
-  const queryClient = useQueryClient();
 
-  const { error: updateItemError, mutate: updateItem } = useUpdateCart({
-    onSuccess: () => {
-      queryClient
-        .invalidateQueries({ queryKey: ["cart"] })
-        .catch(console.error);
-    },
-  });
+  const { error: updateItemError, mutate: updateItem } = useUpdateCart();
 
-  const { error: deleteItemError, mutate: deleteItem } = useDeleteItem({
-    onSuccess: () => {
-      queryClient
-        .invalidateQueries({ queryKey: ["cart"] })
-        .catch(console.error);
-    },
-  });
+  const { error: deleteItemError, mutate: deleteItem } = useDeleteItem();
 
   useEffect(() => {
     updateItem({

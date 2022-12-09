@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCartItem } from "../../utils/routes";
 
 type Options = {
@@ -6,9 +6,21 @@ type Options = {
 };
 
 export function useDeleteItem(options?: Options) {
+  const queryClient = useQueryClient();
+
   const { data, error, isLoading, isSuccess, mutate } = useMutation(
     async (sku: string) => await deleteCartItem(sku),
-    options
+    {
+      onSuccess: () => {
+        if (options?.onSuccess) {
+          options.onSuccess();
+        }
+
+        queryClient
+          .invalidateQueries({ queryKey: ["cart"] })
+          .catch(console.error);
+      },
+    }
   );
 
   return { data, error, isLoading, isSuccess, mutate };
