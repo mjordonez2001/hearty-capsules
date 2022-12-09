@@ -15,12 +15,14 @@ function CheckoutForm({
           name="first_name"
           className="form-control me-3"
           placeholder="First Name"
+          required
         />
         <input
           type="text"
           className="form-control"
           name="last_name"
           placeholder="Last Name"
+          required
         />
       </div>
       <input
@@ -28,6 +30,7 @@ function CheckoutForm({
         name="address1"
         className="form-control"
         placeholder="Address 1"
+        required
       />
       <div className="d-flex my-3">
         <input
@@ -41,6 +44,7 @@ function CheckoutForm({
           className="form-control"
           name="city"
           placeholder="City"
+          required
         />
       </div>
       <div className="d-flex">
@@ -48,6 +52,7 @@ function CheckoutForm({
           className="form-select me-3"
           name="state"
           onChange={onStateChanged}
+          required
         >
           {states}
         </select>
@@ -56,6 +61,7 @@ function CheckoutForm({
           name="zip_code"
           className="form-control"
           placeholder="Zip Code"
+          required
         />
       </div>
 
@@ -65,6 +71,7 @@ function CheckoutForm({
         className="form-control"
         name="card_number"
         placeholder="Card Number"
+        required
       />
       <div className="d-flex my-3">
         <input
@@ -72,12 +79,14 @@ function CheckoutForm({
           name="security_code"
           className="form-control me-3"
           placeholder="Security Code"
+          required
         />
         <input
           type="number"
           className="form-control"
           name="billing_zip"
           placeholder="Zip Code"
+          required
         />
       </div>
     </>

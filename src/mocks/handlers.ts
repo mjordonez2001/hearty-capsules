@@ -2,6 +2,7 @@ import { rest } from "msw";
 import { supplements } from "../data/supplements";
 import { cart } from "../data/cart";
 import { cartItemSchema } from "../utils/types";
+import { orders } from "../data/orders";
 
 export const handlers = [
   rest.get("/supplements", (req, res, ctx) => {
@@ -77,9 +78,10 @@ export const handlers = [
 
     return await res(ctx.delay(100), ctx.status(204));
   }),
+
   rest.post("/orders", async (req, res, ctx) => {
     const data = await req.json();
-    console.log(data);
+    orders.push(data);
     return await res(ctx.delay(500), ctx.status(201));
   }),
 ];

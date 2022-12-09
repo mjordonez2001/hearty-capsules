@@ -54,7 +54,7 @@ function Summary({ cart, subTotal, taxAmount, total, isSubmitting }: Props) {
 
         <div className="m-2 my-3 fs-3 d-flex justify-content-between">
           <div>Total</div>
-          <div>{formatPrice(total, true)}</div>
+          <div>{taxAmount ? formatPrice(total, true) : "-"}</div>
         </div>
         <div className="d-flex justify-content-center">
           <button
