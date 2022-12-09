@@ -17,7 +17,7 @@ export function formatPrice(price: number, decimal = false) {
 
 export function findTotal(cart: CartItem[], state?: string) {
   const subTotal = cart.reduce((accumulator: number, item: CartItem) => {
-    return (accumulator += item.unit_price * item.quantity);
+    return accumulator + item.unit_price * item.quantity;
   }, 0);
 
   const taxAmount = calculateTaxForState(subTotal, state);
@@ -27,6 +27,12 @@ export function findTotal(cart: CartItem[], state?: string) {
     taxAmount,
     total: subTotal + taxAmount,
   };
+}
+
+export function countItems(cart: CartItem[]) {
+  return cart.reduce((accumulator: number, item: CartItem) => {
+    return accumulator + item.quantity;
+  }, 0);
 }
 
 function calculateTaxForState(subTotal: number, state?: string) {
