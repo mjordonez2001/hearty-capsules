@@ -9,6 +9,7 @@ export async function getSupplement(slug: string) {
   return await axiosClient.get(`/supplement/${slug}`);
 }
 
-export async function listSupplements() {
-  return await axiosClient.get("/supplements");
+export async function listSupplements(category: string) {
+  console.log(`fetching ${category}`);
+  return await axiosClient.get(`/supplements/${category}`);
 }
