@@ -10,6 +10,5 @@ export async function getSupplement(slug: string) {
 }
 
 export async function listSupplements(category: string) {
-  console.log(`fetching ${category}`);
   return await axiosClient.get(`/supplements/${category}`);
 }

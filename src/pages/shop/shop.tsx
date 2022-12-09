@@ -21,8 +21,6 @@ function Shop() {
     return <div>Something went wrong</div>;
   }
 
-  console.log(category);
-
   return (
     <div className="d-flex row justify-content-center m-5">
       <ul className="nav nav-tabs">
