@@ -13,6 +13,10 @@ export async function listSupplements() {
   return await axiosClient.get("/supplements");
 }
 
+export async function listSuggested(slug: string) {
+  return await axiosClient.get(`/supplements/suggested/${slug}`);
+}
+
 export async function getCart() {
   return await axiosClient.get("/cart");
 }
