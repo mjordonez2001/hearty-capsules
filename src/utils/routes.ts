@@ -12,3 +12,15 @@ export async function getSupplement(slug: string) {
 export async function listSupplements() {
   return await axiosClient.get("/supplements");
 }
+
+export async function getCart() {
+  return await axiosClient.get("/cart");
+}
+
+export async function updateCartItem(data: CartItem) {
+  return await axiosClient.put("/cart", data);
+}
+
+export async function deleteCartItem(sku: string) {
+  return await axiosClient.delete(`/cart/${sku}`);
+}

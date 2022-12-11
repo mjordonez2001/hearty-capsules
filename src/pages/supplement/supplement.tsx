@@ -29,6 +29,7 @@ function Supplement() {
       product_sku: supplement?.sku,
       unit_price: supplement?.unit_price,
       quantity,
+      product_img: supplement?.photo_url,
     },
     {
       onSuccess: () => {
@@ -46,7 +47,11 @@ function Supplement() {
 
   return (
     <div className="d-flex m-5 justify-content-evenly">
-      <img src={supplement?.photo_url} className="col-5" alt="..." />
+      <img
+        src={supplement?.photo_url}
+        className="col-5"
+        alt={`Photo of ${supplement?.name} supplement`}
+      />
       <div className="px-5 col-6">
         <div className="fst-italic">{supplement?.category}</div>
         <h2>{supplement?.name}</h2>
@@ -66,20 +71,20 @@ function Supplement() {
             <span className="input-group-text">Qty: {quantity}</span>
             <button
               className="btn btn-outline-secondary d-flex align-items-center"
-              onClick={() =>
-                setQuantity((currentQuantity) => currentQuantity + 1)
-              }
-            >
-              <SlArrowUp />
-            </button>
-            <button
-              className="btn btn-outline-secondary d-flex align-items-center"
               disabled={quantity < 2}
               onClick={() =>
                 setQuantity((currentQuantity) => currentQuantity - 1)
               }
             >
               <SlArrowDown />
+            </button>
+            <button
+              className="btn btn-outline-secondary d-flex align-items-center"
+              onClick={() =>
+                setQuantity((currentQuantity) => currentQuantity + 1)
+              }
+            >
+              <SlArrowUp />
             </button>
           </div>
           <button
