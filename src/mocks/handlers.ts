@@ -4,8 +4,22 @@ import { cart } from "../data/cart";
 import { cartItemSchema } from "../utils/types";
 
 export const handlers = [
-  rest.get("/supplements", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(supplements));
+  rest.get("/supplements/:category", (req, res, ctx) => {
+    const category = req.params.category;
+
+    if (category === "All") {
+      return res(ctx.status(200), ctx.json(supplements));
+    }
+
+    const categorySupplements = supplements.filter(
+      (s) => s.category === category
+    );
+
+    if (categorySupplements) {
+      return res(ctx.status(200), ctx.json(categorySupplements));
+    }
+
+    return res(ctx.status(404), ctx.json("Category not found"));
   }),
 
   rest.get("/supplement/:slug", (req, res, ctx) => {
