@@ -17,6 +17,15 @@ export const handlers = [
         (s) => s.category === supplement?.category && s.slug !== supplement.slug
       );
 
+      while (suggested.length < 4) {
+        const random =
+          supplements[Math.floor(Math.random() * supplements.length)];
+
+        if (random && !suggested.includes(random)) {
+          suggested.push(random);
+        }
+      }
+
       return res(ctx.status(200), ctx.json(suggested));
     }
 

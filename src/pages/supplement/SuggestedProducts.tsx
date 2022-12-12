@@ -24,7 +24,7 @@ function SuggestedProducts({ current }: SuggestedProductsProps) {
 
   return (
     <div className="d-flex flex-column text-center m-5">
-      <h3>You may also like</h3>
+      <h4>You may also like</h4>
       <div className="d-flex justify-content-center">
         {suggested.map((supplement: supplementProps) => {
           return (
