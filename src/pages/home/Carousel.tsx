@@ -37,7 +37,7 @@ function Carousel() {
             </Link>
           </div>
         </div>
-        <div className="carousel-item" data-bs-interval="5000">
+        <div className="carousel-item" data-bs-interval="8000">
           <img
             src="https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg"
             className="d-block w-100"
