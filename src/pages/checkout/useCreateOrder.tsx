@@ -1,15 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCartItem } from "../../utils/routes";
+import { createOrder } from "../../utils/routes";
+import { Order } from "../../utils/types";
 
 type Options = {
   onSuccess?: () => void;
 };
 
-export function useDeleteItem(options?: Options) {
+export function useCreateOrder(options?: Options) {
   const queryClient = useQueryClient();
 
   const { data, error, isLoading, isSuccess, mutate } = useMutation(
-    async (sku: string) => await deleteCartItem(sku),
+    async (order: Order) => await createOrder(order),
     {
       onSuccess: () => {
         if (options?.onSuccess) {
@@ -17,7 +18,7 @@ export function useDeleteItem(options?: Options) {
         }
 
         queryClient
-          .invalidateQueries({ queryKey: ["cart"] })
+          .invalidateQueries({ queryKey: ["orders"] })
           .catch(console.error);
       },
     }

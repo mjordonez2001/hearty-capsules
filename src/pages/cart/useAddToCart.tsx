@@ -1,15 +1,30 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { addCartItem } from "../../utils/routes";
 import { CartItem } from "../../utils/types";
 
-export function useAddToCart(item: CartItem, options?: UseMutationOptions) {
+type Options = {
+  onSuccess?: () => void;
+};
+
+export function useAddToCart(options?: Options) {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { data, error, isLoading, isSuccess, mutate } = useMutation(
-    async () => await addCartItem(item),
-    options
+    async (item: CartItem) => await addCartItem(item),
+    {
+      onSuccess: () => {
+        if (options?.onSuccess) {
+          options.onSuccess();
+        }
+
+        queryClient
+          .invalidateQueries({ queryKey: ["cart"] })
+          .catch(console.error);
+      },
+    }
   );
 
   const SuccessModal = React.useMemo(() => {
