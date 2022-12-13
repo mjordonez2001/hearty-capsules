@@ -9,6 +9,29 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(supplements));
   }),
 
+  rest.get("/supplements/suggested/:slug", (req, res, ctx) => {
+    const supplement = supplements.find((s) => s.slug === req.params.slug);
+
+    if (supplement) {
+      const suggested = supplements.filter(
+        (s) => s.category === supplement?.category && s.slug !== supplement.slug
+      );
+
+      while (suggested.length < 4) {
+        const random =
+          supplements[Math.floor(Math.random() * supplements.length)];
+
+        if (random && !suggested.includes(random)) {
+          suggested.push(random);
+        }
+      }
+
+      return res(ctx.status(200), ctx.json(suggested));
+    }
+
+    return res(ctx.json({ error: `not found` }), ctx.status(404));
+  }),
+
   rest.get("/supplement/:slug", (req, res, ctx) => {
     const supplement = supplements.find((s) => s.slug === req.params.slug);
 
