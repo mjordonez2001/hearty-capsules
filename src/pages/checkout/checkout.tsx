@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { findTotal } from "../../utils/format";
 import { getCart } from "../../utils/routes";
 import CheckoutForm from "./CheckoutForm";
@@ -7,13 +8,15 @@ import Summary from "./Summary";
 import { useCreateOrder } from "./useCreateOrder";
 
 function Checkout() {
+  const navigate = useNavigate();
+
   const {
     error,
     isLoading,
     mutate: createOrder,
   } = useCreateOrder({
     onSuccess: () => {
-      // todo
+      navigate("/account");
     },
   });
 
@@ -33,6 +36,11 @@ function Checkout() {
   return (
     <div className="m-4">
       <h2 className="mb-4 text-center">Checkout</h2>
+      {!!error && (
+        <div className="alert alert-danger" role="alert">
+          Uh oh, something went wrong!
+        </div>
+      )}
       <form
         className="d-flex justify-content-center"
         onSubmit={(event) => {
