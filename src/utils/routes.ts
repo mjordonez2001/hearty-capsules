@@ -5,6 +5,10 @@ export async function addCartItem(data: CartItem) {
   return await axiosClient.post("/cart", data);
 }
 
+export async function removeCart() {
+  return await axiosClient.delete("/cart");
+}
+
 export async function getSupplement(slug: string) {
   return await axiosClient.get(`/supplement/${slug}`);
 }

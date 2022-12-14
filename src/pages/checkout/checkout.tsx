@@ -1,14 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { findTotal } from "../../utils/format";
-import { getCart } from "../../utils/routes";
+import { getCart, removeCart } from "../../utils/routes";
 import CheckoutForm from "./CheckoutForm";
 import Summary from "./Summary";
 import { useCreateOrder } from "./useCreateOrder";
 
 function Checkout() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const {
     error,
@@ -16,6 +17,10 @@ function Checkout() {
     mutate: createOrder,
   } = useCreateOrder({
     onSuccess: () => {
+      removeCart().catch(console.error);
+      queryClient
+        .invalidateQueries({ queryKey: ["cart"] })
+        .catch(console.error);
       navigate("/order-confirmation");
     },
   });

@@ -44,6 +44,16 @@ export const handlers = [
     return await res(ctx.delay(500), ctx.status(201));
   }),
 
+  rest.delete("/cart", (req, res, ctx) => {
+    cart.splice(0, cart.length);
+
+    if (cart.length === 0) {
+      return res(ctx.status(204));
+    }
+
+    return res(ctx.json("Something went wrong"), ctx.status(401));
+  }),
+
   rest.put("/cart", async (req, res, ctx) => {
     const data = await req.json();
     const result = cartItemSchema.safeParse(data);
