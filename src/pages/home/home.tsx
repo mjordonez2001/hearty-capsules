@@ -1,3 +1,4 @@
+import About from "./About";
 import Carousel from "./Carousel";
 import FeaturedProducts from "./FeaturedProducts";
 
@@ -11,6 +12,9 @@ function Home() {
       </div>
       <div>
         <FeaturedProducts />
+      </div>
+      <div>
+        <About />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ function Featured({ name, photo_url, slug, description }: FeaturedProps) {
         />
         <div className="card-body text-center">
           <h5 className="card-title">{name}</h5>
-          <p>{description}</p>
+          <p className="text-start">{description}</p>
         </div>
       </div>
     </Link>
