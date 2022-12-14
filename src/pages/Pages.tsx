@@ -13,6 +13,9 @@ const Login = lazy(async () => await import("./login/login"));
 const Quiz = lazy(async () => await import("./quiz/quiz"));
 const Shop = lazy(async () => await import("./shop/shop"));
 const Supplement = lazy(async () => await import("./supplement/supplement"));
+const OrderConfirmation = lazy(
+  async () => await import("./checkout/OrderConfirmation")
+);
 
 function Pages() {
   return (
@@ -25,6 +28,7 @@ function Pages() {
             <Route path="/account" element={<Account />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/quiz" element={<Quiz />} />

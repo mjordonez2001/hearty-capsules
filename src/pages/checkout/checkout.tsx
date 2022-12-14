@@ -16,7 +16,7 @@ function Checkout() {
     mutate: createOrder,
   } = useCreateOrder({
     onSuccess: () => {
-      navigate("/account");
+      navigate("/order-confirmation");
     },
   });
 
