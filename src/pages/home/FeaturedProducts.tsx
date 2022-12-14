@@ -17,19 +17,19 @@ function FeaturedProducts() {
 
   return (
     <div className="d-flex flex-column text-center mt-5">
-      <h4>Featured Products</h4>
+      <h3>Featured Products</h3>
       <div>
         Explore our curated selection of vitamins, minerals, herbs, and
         speciality products.
       </div>
-      <div>
+      <div className="d-flex justify-content-center m-2">
         {featured.map((supplement: supplementProps) => {
           return (
-            <div key={supplement.slug} className="mb-5 mt-3 col-2 mx-3">
+            <div key={supplement.slug} className="m-2 col-2">
               <Featured
-                slug={supplement.slug}
                 name={supplement.name}
-                unit_price={supplement.unit_price}
+                slug={supplement.slug}
+                description={supplement.description}
                 photo_url={supplement.photo_url}
               />
             </div>

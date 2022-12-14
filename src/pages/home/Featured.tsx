@@ -1,7 +1,28 @@
-import { supplementProps } from "../../utils/types";
+import { Link } from "react-router-dom";
 
-function Featured({ name, photo_url, description }: supplementProps) {
-  return <div>Product</div>;
+type FeaturedProps = {
+  name: string;
+  slug: string;
+  photo_url: string;
+  description?: string;
+};
+
+function Featured({ name, photo_url, slug, description }: FeaturedProps) {
+  return (
+    <Link to={`/supplement/${slug}`} className="text-decoration-none text-dark">
+      <div className="card">
+        <img
+          src={photo_url}
+          className="card-img-top"
+          alt={`Photo of ${name} supplement`}
+        />
+        <div className="card-body text-center">
+          <h5 className="card-title">{name}</h5>
+          <p>{description}</p>
+        </div>
+      </div>
+    </Link>
+  );
 }
 
 export default Featured;
