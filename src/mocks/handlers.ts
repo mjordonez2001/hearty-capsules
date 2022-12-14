@@ -33,7 +33,7 @@ export const handlers = [
     return res(ctx.json({ error: `not found` }), ctx.status(404));
   }),
 
-  rest.get("/supplements/featured", (req, res, ctx) => {
+  rest.get("featured", (req, res, ctx) => {
     const result = [];
 
     for (let i = 0; i < featured.length; i++) {

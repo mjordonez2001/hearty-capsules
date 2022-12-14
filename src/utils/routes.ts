@@ -18,7 +18,7 @@ export async function listSuggested(slug: string) {
 }
 
 export async function listFeatured() {
-  return await axiosClient.get("/supplements/featured");
+  return await axiosClient.get("/featured");
 }
 
 export async function getCart() {
