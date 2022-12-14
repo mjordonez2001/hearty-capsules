@@ -3,6 +3,7 @@ import { supplements } from "../data/supplements";
 import { cart } from "../data/cart";
 import { cartItemSchema } from "../utils/types";
 import { orders } from "../data/orders";
+import { featured } from "../data/featured";
 
 export const handlers = [
   rest.get("/supplements", (req, res, ctx) => {
@@ -30,6 +31,21 @@ export const handlers = [
     }
 
     return res(ctx.json({ error: `not found` }), ctx.status(404));
+  }),
+
+  rest.get("featured", (req, res, ctx) => {
+    const result = [];
+
+    for (let i = 0; i < featured.length; i++) {
+      const supplement = supplements.find((s) => s.slug === featured[i]);
+      if (!supplement) {
+        return res(ctx.json({ error: `not found` }), ctx.status(404));
+      }
+
+      result.push(supplement);
+    }
+
+    return res(ctx.status(200), ctx.json(result));
   }),
 
   rest.get("/supplement/:slug", (req, res, ctx) => {

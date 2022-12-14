@@ -4,12 +4,12 @@ test("Home page renders", async ({ page }) => {
   await page.goto("/");
 
   await expect(page).toHaveTitle("Hearty Capsules");
-  await expect(page.getByText("Home")).toBeVisible();
+  await expect(page.getByText("About Us").first()).toBeVisible();
 });
 
 test("Account page renders", async ({ page }) => {
   await page.goto("/account");
-  await expect(page.getByText("Account")).toBeVisible();
+  await expect(page.getByText("Account").first()).toBeVisible();
 });
 
 test("Cart page renders", async ({ page }) => {
@@ -19,7 +19,7 @@ test("Cart page renders", async ({ page }) => {
 
 test("Checkout page renders", async ({ page }) => {
   await page.goto("/checkout");
-  await expect(page.getByText("Checkout")).toBeVisible();
+  await expect(page.getByText("Checkout").first()).toBeVisible();
 });
 
 test("Contact page renders", async ({ page }) => {
@@ -29,7 +29,7 @@ test("Contact page renders", async ({ page }) => {
 
 test("Login page renders", async ({ page }) => {
   await page.goto("/login");
-  await expect(page.getByText("Log in")).toBeVisible();
+  await expect(page.getByText("Log in").first()).toBeVisible();
 });
 
 test("Quiz page renders", async ({ page }) => {
@@ -39,10 +39,10 @@ test("Quiz page renders", async ({ page }) => {
 
 test("Shop page lists supplements", async ({ page }) => {
   await page.goto("/shop");
-  await expect(page.getByText("Vitamin B-12")).toBeVisible();
+  await expect(page.getByText("Vitamin B-12").first()).toBeVisible();
 });
 
 test("Supplement page renders", async ({ page }) => {
   await page.goto("/supplement/iron");
-  await expect(page.getByText("Add to Cart")).toBeVisible();
+  await expect(page.getByText("Add to Cart").first()).toBeVisible();
 });
